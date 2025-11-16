@@ -1,4 +1,3 @@
-
 set $mod Mod4
 
 font pango:DejaVu Sans Mono 9
@@ -160,10 +159,17 @@ for_window [class="Google-chrome"] move to workspace 3
 for_window [class="kitty"] move to workspace 2
 
 exec --no-startup-id xinput set-prop "Your Touchpad Name" "libinput Tapping Enabled" 1
-exec_always --no-startup-id feh --bg-scale /home/muftawu/Downloads/bg.jpg
+exec_always --no-startup-id feh --bg-scale /home/muftawu/Downloads/bg2.jpg
+
+exec --no-startup-id firefox 
+exec --no-startup-id kitty
+exec --no-startup-id google-chrome 
 
 bindsym $mod+l exec i3lock
 
+# brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set +10%
 
 
 

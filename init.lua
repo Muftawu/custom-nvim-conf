@@ -5,7 +5,7 @@ vim.g.have_nerd_font = false
 
 -- Make line numbers default
 vim.o.number = true
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -106,11 +106,11 @@ require('lazy').setup({
       },
     },
 
-    vim.keymap.set('n', '<Esc>i', function()
+    vim.keymap.set('n', '<leader>k', function()
       require('toggleterm').toggle(1)
     end, { noremap = true, silent = true }),
 
-    vim.keymap.set('t', '<Esc>i', function()
+    vim.keymap.set('t', '<leader>k', function()
       vim.cmd [[stopinsert]]
       require('toggleterm').toggle(1)
     end, { noremap = true, silent = true }),
@@ -236,8 +236,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -461,17 +461,18 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
-        end
-      end,
+      format_on_save = false,
+      -- format_on_save = function(bufnr)
+      --   local disable_filetypes = { c = true, cpp = true, js = true, ts = true, jsx = true, tsx = true }
+      --   if disable_filetypes[vim.bo[bufnr].filetype] then
+      --     return nil
+      --   else
+      --     return {
+      --       timeout_ms = 500,
+      --       lsp_format = 'fallback',
+      --     }
+      --   end
+      -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
@@ -505,7 +506,7 @@ require('lazy').setup({
     opts = {
       keymap = {
         preset = 'default',
-        ['<Tab>'] = { 'select_and_accept' },
+        -- ['<Tab>'] = { 'select_and_accept' },
       },
 
       appearance = {
